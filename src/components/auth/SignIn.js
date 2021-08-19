@@ -1,26 +1,22 @@
 import React, { Component } from "react";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 import { authAction } from "../../store/actions/authAction";
 
 class SignIn extends Component {
   state = {
-      email:"",
-      password:""
+    email: "",
+    password: "",
   };
 
   handleChange = (e) => {
-    this.setState(
-        {
-            [e.target.id]:e.target.value
-        }
-    )
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
   };
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.login(this.state)
-
-    console.log(this.props.auth)
+    this.props.login(this.state);
   };
 
   render() {
@@ -46,16 +42,16 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = (state) =>{
-  return{
-    auth:state.auth.authError
-  }
-} 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth.authError,
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-    login:(credential)=> dispatch(authAction(credential))
-  }
-} 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (credential) => dispatch(authAction(credential)),
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
