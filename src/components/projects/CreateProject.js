@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import {connect} from "react-redux"
 
-class SignIn extends Component {
+import {createProject} from "../../store/actions/projectAction"
+
+class CreateProject extends Component {
   state = {
     title: "",
     content: "",
@@ -14,14 +17,14 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(this.state);
+    this.props.newProject(this.state);
   };
 
   render() {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign In</h5>
+          <h5 className="grey-text text-darken-3">Create Project</h5>
           <div className="input-field">
             <label htmlFor="title">Title</label>
             <input type="text" id="title" onChange={this.handleChange} />
@@ -44,4 +47,10 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    newProject: (project)=> dispatch(createProject(project))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(CreateProject);
