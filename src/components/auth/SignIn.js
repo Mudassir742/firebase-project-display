@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { authAction } from "../../store/actions/authAction";
+import { signInAction } from "../../store/actions/authAction";
 
 class SignIn extends Component {
   state = {
@@ -23,7 +23,7 @@ class SignIn extends Component {
 
   render() {
 
-    const {loginTrue} = this.props
+    const {loginTrue,authError} = this.props
 
     if(loginTrue.uid) return <Redirect to="/"/>
 
@@ -42,6 +42,9 @@ class SignIn extends Component {
 
           <div className="input-field">
             <button className="btn pink ligthen-1 z-depth-0">Login</button>
+            <div className="center red-text">
+              { authError ? <p>{authError}</p> : null }
+            </div>
           </div>
         </form>
       </div>
@@ -51,14 +54,14 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.authError,
+    authError: state.auth.authError,
     loginTrue:state.firebase.auth
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (credential) => dispatch(authAction(credential)),
+    login: (credential) => dispatch(signInAction(credential)),
   };
 };
 

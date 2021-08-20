@@ -6,7 +6,6 @@ import SignOutLinks from "./SignOutLinks";
 import SignInLinks from "./SignInLinks";
 
 const Navbar = (props) => {
-  console.log(props.auth);
 
   const { auth } = props;
 

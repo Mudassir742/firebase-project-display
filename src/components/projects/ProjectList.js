@@ -9,7 +9,7 @@ const ProjectList = (props) => {
         props.projects.map((item) => {
           return (
             <Link to={"/detail/" + item.id} key={item.id}>
-              <ProjectSummary projects={item}  />
+              <ProjectSummary projects={item} />
             </Link>
           );
         })}

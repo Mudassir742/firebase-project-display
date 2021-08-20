@@ -19,6 +19,8 @@ class CreateProject extends Component {
     e.preventDefault();
 
     this.props.newProject(this.state);
+
+    this.props.history.push({pathname:"/"})
   };
 
   render() {
